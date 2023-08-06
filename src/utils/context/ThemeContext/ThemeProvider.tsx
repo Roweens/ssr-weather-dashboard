@@ -20,7 +20,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
         localStorage.setItem(THEME_LOCALSTORAGE_KEY, theme);
     }, [theme]);
 
-    document.documentElement.className = theme;
+    if (typeof window !== 'undefined') {
+        document.documentElement.className = theme;
+    }
 
     const defaultProps = useMemo(
         () => ({

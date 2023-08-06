@@ -4,6 +4,7 @@ import { Inter, Roboto_Flex } from 'next/font/google';
 import { ThemeProvider } from '@/utils/context/ThemeContext/ThemeProvider';
 import { MainLayout } from '@/components/layouts/MainLayout/MainLayout';
 import { Header } from '@/components/Header/Header';
+import { LocationProvider } from '@/utils/context/LocationContext/LocationProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 const robotoFlex = Roboto_Flex({
@@ -22,7 +23,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <body className={`${inter.className} ${robotoFlex.variable} app`}>
                 <ThemeProvider>
-                    <MainLayout header={<Header />}>{children}</MainLayout>
+                    <LocationProvider>
+                        <MainLayout header={<Header />}>{children}</MainLayout>
+                    </LocationProvider>
                 </ThemeProvider>
             </body>
         </html>

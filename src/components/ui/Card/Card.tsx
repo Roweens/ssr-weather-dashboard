@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import cls from './Card.module.scss';
 import { Mods } from '@/types/Mods';
 
-export type CardVariant = 'dark' | 'light';
+export type CardVariant = 'dark' | 'light' | 'highlighted';
 export type CardPadding = '0' | '8' | '16' | '24' | '32';
 export type CardBorder = 'round' | 'normal' | 'intermediate';
 

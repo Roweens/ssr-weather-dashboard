@@ -8,37 +8,34 @@ import { Icon } from '../Icon/Icon';
 interface ComboboxProps<T extends string> {
     className?: string;
     values: T[];
-    value: T;
+    value?: T;
+    onChange?: (value: T) => void;
     placeholder?: string;
     addonLeft?: ReactNode;
     addonRight?: ReactNode;
 }
 
-const people = [
-    'Durward Reynolds',
-    'Kenton Towne',
-    'Therese Wunsch',
-    'Benedict Kessler',
-    'Katelyn Rohan',
-];
-
 export const Combobox = <T extends string>(props: ComboboxProps<T>) => {
-    const { className, value, values, placeholder, addonLeft, addonRight } = props;
+    const { className, value, values, placeholder, onChange, addonLeft, addonRight } = props;
 
-    const [selectedPerson, setSelectedPerson] = useState(people[0]);
+    // const [selectedValue, setSelectedValue] = useState(values[0]);
     const [query, setQuery] = useState('');
+
+    const onChangeHandler = (value: T) => {
+        onChange?.(value);
+    };
 
     const filteredPeople =
         query === ''
-            ? people
-            : people.filter((person) => {
-                  return person.toLowerCase().includes(query.toLowerCase());
+            ? values
+            : values.filter((item) => {
+                  return item.toLowerCase().includes(query.toLowerCase());
               });
 
     return (
         <ComboboxComponent
-            value={selectedPerson}
-            onChange={setSelectedPerson}
+            value={value}
+            onChange={onChangeHandler}
             as="div"
             className={classNames(styles.wrapper, {}, [className])}
         >
@@ -52,6 +49,7 @@ export const Combobox = <T extends string>(props: ComboboxProps<T>) => {
                         </div>
                     )}
                     <ComboboxComponent.Input
+                        placeholder={placeholder}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             setQuery(event.target.value)
                         }

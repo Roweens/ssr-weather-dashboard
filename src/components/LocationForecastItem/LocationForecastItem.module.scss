@@ -1,0 +1,13 @@
+.day {
+    @apply after:content-[''] after:w-[120%] after:h-[1px] after:bg-hintColor after:block after:absolute after:top-8 after:right-[-10%] relative;
+}
+
+.cardHeader {
+    @apply border-b-2 px-5 py-3;
+}
+
+.cardBody {
+    @apply p-5;
+}
+
+

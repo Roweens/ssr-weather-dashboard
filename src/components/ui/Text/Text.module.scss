@@ -26,6 +26,16 @@
     }
 }
 
+.inverted {
+    .title {
+        @apply text-bgColor;
+    }
+
+    .text {
+        @apply text-bgColor;
+    }
+}
+
 .left {
     @apply text-left;
 }
@@ -60,11 +70,31 @@
 
 .size_l {
     .title {
-        @apply text-lg;
+        @apply text-xl;
     }
 
     .text {
         @apply text-lg;
+    }
+}
+
+.size_xl {
+    .title {
+        @apply text-3xl;
+    }
+
+    .text {
+        @apply text-3xl;
+    }
+}
+
+.size_xxl {
+    .title {
+        @apply text-6xl;
+    }
+
+    .text {
+        @apply text-6xl;
     }
 }
 
