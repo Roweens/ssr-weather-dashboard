@@ -1,6 +1,6 @@
 'use client';
 
-import { THEME_LOCALSTORAGE_KEY, Theme } from '@/utils/const/theme';
+import { THEME_LOCALSTORAGE_KEY, Theme } from '@/lib/const/theme';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { ThemeContext } from './ThemeContext';
 
@@ -12,7 +12,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     const [theme, setTheme] = useState<Theme>('light');
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as Theme;
+        const savedTheme = localStorage.getItem(
+            THEME_LOCALSTORAGE_KEY,
+        ) as Theme;
         setTheme(savedTheme);
     }, []);
 
@@ -29,8 +31,12 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
             theme,
             setTheme,
         }),
-        [theme]
+        [theme],
     );
 
-    return <ThemeContext.Provider value={defaultProps}>{children}</ThemeContext.Provider>;
+    return (
+        <ThemeContext.Provider value={defaultProps}>
+            {children}
+        </ThemeContext.Provider>
+    );
 };

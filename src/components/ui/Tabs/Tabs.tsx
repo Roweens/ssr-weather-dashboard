@@ -24,7 +24,7 @@ export const Tabs = <T extends string>(props: TabsProps<T>) => {
         (tab: TabItem<T>) => () => {
             onTabClick(tab);
         },
-        [onTabClick]
+        [onTabClick],
     );
 
     return (
@@ -39,7 +39,11 @@ export const Tabs = <T extends string>(props: TabsProps<T>) => {
 
                 return (
                     <Card
-                        className={classNames(cls.tab, { [cls.selected]: isSelected }, [])}
+                        className={classNames(
+                            cls.tab,
+                            { [cls.selected]: isSelected },
+                            [],
+                        )}
                         key={tab.value}
                         variant={tab.value === value ? 'light' : 'dark'}
                         onClick={clickHandle(tab)}

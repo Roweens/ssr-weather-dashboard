@@ -1,3 +1,7 @@
 {
-    "extends": ["next/babel", "next/core-web-vitals"]
+    "extends": ["next", "next/core-web-vitals"],
+    "plugins": ["react", "@tanstack/query", "react-hooks", "prettier"],
+    "rules": {
+        "react/display-name": "warn"
+    }
 }

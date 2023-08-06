@@ -6,7 +6,7 @@ import cls from './ThemeSwitcher.module.scss';
 import SunIcon from '@/../public/sun.svg';
 import MoonIcon from '@/../public/moon.svg';
 import { Icon } from '../ui/Icon/Icon';
-import { useTheme } from '@/utils/hooks/useTheme/useTheme';
+import { useTheme } from '@/lib/hooks/useTheme/useTheme';
 import { TabItem, Tabs } from '../ui/Tabs/Tabs';
 
 interface ThemeSwitcherProps {

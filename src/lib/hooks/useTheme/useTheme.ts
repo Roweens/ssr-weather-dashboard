@@ -1,7 +1,7 @@
 'use client';
 
-import { Theme } from '@/utils/const/theme';
-import { ThemeContext } from '@/utils/context/ThemeContext/ThemeContext';
+import { Theme } from '@/lib/const/theme';
+import { ThemeContext } from '@/lib/context/ThemeContext/ThemeContext';
 import { useContext } from 'react';
 
 interface UseThemeResult {

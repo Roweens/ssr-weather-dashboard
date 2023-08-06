@@ -2,9 +2,9 @@
 
 import { ReactElement, memo, useState } from 'react';
 import { Switch as SwitchComponent } from '@headlessui/react';
-import { Mods } from '@/app/types/Mods';
 import styles from './Switch.module.scss';
 import classNames from 'classnames';
+import { Mods } from '@/types/Mods';
 
 interface SwitchProps {
     className?: string;
@@ -23,7 +23,10 @@ export const Switch = memo((props: SwitchProps) => {
         <SwitchComponent
             checked={enabled}
             onChange={setEnabled}
-            className={classNames(styles.switch, mods, ['bg-gray-200', className])}
+            className={classNames(styles.switch, mods, [
+                'bg-gray-200',
+                className,
+            ])}
         >
             <span className="sr-only">Enable notifications</span>
             <span

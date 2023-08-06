@@ -3,7 +3,10 @@ import styles from './Icon.module.scss';
 import classNames from 'classnames';
 import { Mods } from '@/types/Mods';
 
-type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'onClick' | 'stroke' | 'fill'>;
+type SvgProps = Omit<
+    React.SVGProps<SVGSVGElement>,
+    'onClick' | 'stroke' | 'fill'
+>;
 type IconSize = 's' | 'm' | 'l';
 
 interface IconBaseProps extends SvgProps {
@@ -58,7 +61,10 @@ export const Icon = memo((props: IconProps) => {
         return (
             <button
                 type="button"
-                className={classNames(styles.iconButton, {}, ['group', buttonClassName])}
+                className={classNames(styles.iconButton, {}, [
+                    'group',
+                    buttonClassName,
+                ])}
                 onClick={props.onClick}
             >
                 {icon}

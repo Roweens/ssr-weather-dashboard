@@ -25,7 +25,9 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
         return (
             <Card variant="light" padding="24">
                 <VStack
-                    className={classNames(styles.locationForecastItem, {}, [className])}
+                    className={classNames(styles.locationForecastItem, {}, [
+                        className,
+                    ])}
                     gap="32"
                     align="center"
                 >
@@ -39,8 +41,18 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
 
     return (
         <Card variant="highlighted" padding="0">
-            <VStack className={classNames(styles.locationForecastItem, {}, [className])} gap="16">
-                <HStack max justify="between" gap="32" className={styles.cardHeader}>
+            <VStack
+                className={classNames(styles.locationForecastItem, {}, [
+                    className,
+                ])}
+                gap="16"
+            >
+                <HStack
+                    max
+                    justify="between"
+                    gap="32"
+                    className={styles.cardHeader}
+                >
                     <Text title="Saturday" variant="inverted" bold size="l" />
                     <Text title="11:00 PM" variant="inverted" bold size="l" />
                 </HStack>

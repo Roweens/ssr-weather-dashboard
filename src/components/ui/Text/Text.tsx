@@ -52,12 +52,26 @@ export const Text = memo((props: TextProps) => {
     const HeaderTag = mapSizeToHeaderTag[size];
     const sizeClass = mapSizeToClass[size];
 
-    const additionalClasses = [className, styles[variant], styles[align], sizeClass];
+    const additionalClasses = [
+        className,
+        styles[variant],
+        styles[align],
+        sizeClass,
+    ];
 
     return (
-        <div className={classNames(styles.text, { [styles.bold]: bold }, additionalClasses)}>
+        <div
+            className={classNames(
+                styles.text,
+                { [styles.bold]: bold },
+                additionalClasses,
+            )}
+        >
             {title && (
-                <HeaderTag className={styles.title} data-testid={`${dataTestId}.Header`}>
+                <HeaderTag
+                    className={styles.title}
+                    data-testid={`${dataTestId}.Header`}
+                >
                     {title}
                 </HeaderTag>
             )}

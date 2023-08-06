@@ -4,11 +4,11 @@ import TwitterIcon from '@/../public/menu.svg';
 import LocationIcon from '@/../public/location.svg';
 import { Icon } from '../ui/Icon/Icon';
 import { Text } from '../ui/Text/Text';
-import classNames from 'classnames';
 import { HStack } from '../ui/Stack';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import { CountrySearch } from '../CountrySearch/CountrySearch';
-import { Card } from '../ui/Card/Card';
+import { useContext, useEffect, useState } from 'react';
+import { LocationContext } from '@/lib/context/LocationContext/LocationContext';
 
 interface HeaderProps {
     className?: string;
@@ -16,15 +16,30 @@ interface HeaderProps {
 
 export const Header = (props: HeaderProps) => {
     const { className } = props;
+    const [locationText, setLocationText] = useState('');
+    const { location, error } = useContext(LocationContext);
 
-    // const location = useGeolocation();
+    useEffect(() => {
+        if (location || error) {
+            setLocationText(
+                (location
+                    ? `${location.coords.latitude}, ${location.coords.longitude}`
+                    : error) as string,
+            );
+        }
+    }, [error, location]);
 
     return (
         <header className={styles.header}>
-            <Icon Svg={TwitterIcon} size="s" interactive buttonClassName={styles.icon} />
+            <Icon
+                Svg={TwitterIcon}
+                size="s"
+                interactive
+                buttonClassName={styles.icon}
+            />
             <HStack gap="8">
                 <Icon Svg={LocationIcon} size="s" interactive />
-                <Text text="Moscow, Russia" bold />
+                <Text text={locationText} bold />
             </HStack>
             <CountrySearch className={styles.search} />
             <ThemeSwitcher className={styles.themeSwitcher} />
