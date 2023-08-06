@@ -1,0 +1,51 @@
+.card {
+    @apply rounded-2xl w-fit;
+}
+
+.dark {
+    @apply bg-bgColor;
+}
+
+.light {
+    @apply bg-lightBgColor;
+}
+
+.normal {
+    @apply rounded-2xl;
+}
+
+.round {
+    @apply rounded-full;
+}
+
+.intermediate {
+    @apply rounded-3xl;
+}
+
+.fullWidth {
+    @apply w-full;
+}
+
+.fullHeight {
+    @apply h-full;
+}
+
+.gap_0 {
+    @apply p-0;
+}
+
+.gap_8 {
+    @apply p-stack8;
+}
+
+.gap_16 {
+    @apply p-stack16;
+}
+
+.gap_24 {
+    @apply p-stack24;
+}
+
+.gap_32 {
+    @apply p-stack32;
+}

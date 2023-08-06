@@ -1,0 +1,35 @@
+.icon {
+    @apply text-invertedColor;
+}
+
+.stroke {
+    @apply stroke-invertedColor;
+}
+
+.fill {
+    @apply fill-invertedColor;
+}
+
+.disabled {
+    @apply opacity-40;
+}
+
+.s {
+    @apply w-7;
+}
+
+.m {
+    @apply w-8;
+}
+
+.l {
+    @apply w-10;
+}
+
+.iconButton {
+    &:hover {
+        .icon {
+            @apply fill-highlightColor;
+        }
+    }
+}

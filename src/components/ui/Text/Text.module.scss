@@ -1,0 +1,76 @@
+.title {
+    @apply text-invertedColor;
+}
+
+.text {
+    @apply text-invertedColor;
+}
+
+.error {
+    .title {
+        @apply text-red-700;
+    }
+
+    .text {
+        @apply text-red-700;
+    }
+}
+
+.accent {
+    .title {
+        @apply text-hintColor;
+    }
+
+    .text {
+        @apply text-hintColor;
+    }
+}
+
+.left {
+    @apply text-left;
+}
+
+.right {
+    @apply text-right;
+}
+
+.center {
+    @apply text-center;
+}
+
+.size_s {
+    .title {
+        @apply text-sm;
+    }
+
+    .text {
+        @apply text-sm;
+    }
+}
+
+.size_m {
+    .title {
+        @apply text-base;
+    }
+
+    .text {
+        @apply text-base;
+    }
+}
+
+.size_l {
+    .title {
+        @apply text-lg;
+    }
+
+    .text {
+        @apply text-lg;
+    }
+}
+
+.bold {
+    .title,
+    .text {
+        @apply font-bold;
+    }
+}

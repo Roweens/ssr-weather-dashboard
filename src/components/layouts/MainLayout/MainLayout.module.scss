@@ -1,0 +1,11 @@
+.mainLayout {
+    @apply min-h-screen flex flex-col items-center;
+}
+
+.header {
+    @apply h-fit w-full;
+}
+
+.content {
+    @apply w-full;
+}

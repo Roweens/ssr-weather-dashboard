@@ -1,0 +1,64 @@
+.wrapper {
+    @apply max-w-2xl relative bg-transparent flex;
+    min-width: 30%;
+
+    &:hover {
+        & .input {
+            @apply bg-highlightColor text-bgColor transition-colors;
+        }
+        & .addon {
+            @apply bg-highlightColor text-bgColor transition-colors;
+        }
+    }
+}
+
+.input {
+    @apply rounded-full px-4 py-2 bg-lightBgColor text-hintColor;
+
+    width: 100%;
+}
+
+.wrapper.widthAddonRight {
+    @apply pr-4;
+}
+.wrapper.widthAddonLeft {
+    @apply pl-4;
+}
+
+.input.withAddonRight {
+    @apply rounded-r-none;
+}
+.input.withAddonLeft {
+    @apply rounded-l-none;
+}
+
+.list {
+    @apply bg-lightBgColor text-invertedColor mt-2 rounded-3xl absolute w-full px-4 py-1 top-12;
+}
+
+.activeOption {
+    @apply bg-highlightColor;
+}
+
+.selectedOption {
+}
+
+.optionWrapper {
+    @apply py-2 bg-opacity-0;
+}
+
+.activeInput {
+    @apply bg-highlightColor text-bgColor transition-colors;
+}
+
+.addon {
+    @apply rounded-l-full px-4 py-2 bg-lightBgColor text-hintColor;
+}
+
+.activeAddon {
+    @apply bg-highlightColor transition-colors;
+}
+
+.option {
+    @apply flex items-center gap-3 py-1 px-2 rounded-3xl transition-colors;
+}

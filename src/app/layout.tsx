@@ -1,9 +1,16 @@
-import './globals.css';
+import '../styles/globals.scss';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Header } from './components/Header/Header';
+import { Inter, Roboto_Flex } from 'next/font/google';
+import { ThemeProvider } from '@/utils/context/ThemeContext/ThemeProvider';
+import { MainLayout } from '@/components/layouts/MainLayout/MainLayout';
+import { Header } from '@/components/Header/Header';
 
 const inter = Inter({ subsets: ['latin'] });
+const robotoFlex = Roboto_Flex({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-roboto-flex',
+});
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -13,9 +20,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <Header />
-                {children}
+            <body className={`${inter.className} ${robotoFlex.variable} app`}>
+                <ThemeProvider>
+                    <MainLayout header={<Header />}>{children}</MainLayout>
+                </ThemeProvider>
             </body>
         </html>
     );

@@ -1,0 +1,12 @@
+.header {
+    @apply grid grid-cols-header px-6 py-4 items-center;
+}
+
+.search,
+.themeSwitcher {
+    @apply justify-self-end;
+}
+
+.icon {
+    @apply bg-lightBgColor rounded-3xl p-3 justify-self-start #{!important};
+}

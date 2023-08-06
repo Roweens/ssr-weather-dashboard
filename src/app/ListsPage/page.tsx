@@ -7,5 +7,5 @@ interface ListsPageProps {
 export const ListsPage = (props: ListsPageProps) => {
     const { className } = props;
 
-    return <div className={''}>Lists</div>;
+    return <main className={''}>Lists</main>;
 };

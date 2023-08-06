@@ -7,5 +7,5 @@ interface MapPageProps {
 export const MapPage = (props: MapPageProps) => {
     const { className } = props;
 
-    return <div className={''}>Map</div>;
+    return <main className={''}>Map</main>;
 };

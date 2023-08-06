@@ -1,0 +1,16 @@
+@import './reset.scss';
+@import './light.scss';
+@import './dark.scss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --header-h: 100px;
+}
+
+.app {
+    @apply bg-bgColor;
+    @apply h-screen;
+    @apply font-roboto;
+}
