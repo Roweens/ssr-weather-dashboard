@@ -4,8 +4,10 @@ interface MapPageProps {
     className?: string;
 }
 
-export const MapPage = (props: MapPageProps) => {
+const MapPage = (props: MapPageProps) => {
     const { className } = props;
 
     return <main className={''}>Map</main>;
 };
+
+export default MapPage;

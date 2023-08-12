@@ -23,6 +23,7 @@ module.exports = {
             },
             gridTemplateColumns: {
                 header: '100px minmax(100px, 300px) 1fr minmax(100px, 300px)',
+                mainPage: 'minmax(500px, 1fr) minmax(300px, 750px)',
             },
         },
     },

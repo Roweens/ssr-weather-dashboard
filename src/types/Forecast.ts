@@ -1,5 +1,7 @@
 export type ForecastView = 'short' | 'detailed';
 
+export type TemperatureFormat = 'standard' | 'metric';
+
 interface Coordinates {
     lat: number;
     lon: number;
@@ -40,7 +42,7 @@ interface DayForecastWeather {
     id: number;
     main: string;
 }
-interface DayForecast {
+export interface DayForecast {
     dt: number;
     dt_txt: string;
     pop: 0;
@@ -50,6 +52,7 @@ interface DayForecast {
     sys: { pod: string };
     wind: DayForecastWind;
     weather: DayForecastWeather[];
+    rain: { '3h': number };
 }
 export interface ForecastType {
     city: City;

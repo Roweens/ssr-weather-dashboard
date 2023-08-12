@@ -6,19 +6,26 @@ import classNames from 'classnames';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 
-interface ComboboxProps<T extends string> {
+export interface ValueItem<T extends string> {
+    id: number | string;
+    value: T;
+}
+
+interface ComboboxProps<T extends string, S extends any> {
     className?: string;
-    values: T[];
-    value?: T;
+    values: ValueItem<T>[];
+    value?: S;
     inputValue: string;
     onInputChange?: (value: string) => void;
-    onChange?: (value: T) => void;
+    onChange?: (value: S) => void;
     placeholder?: string;
     addonLeft?: ReactNode;
     addonRight?: ReactNode;
 }
 
-export const Combobox = <T extends string>(props: ComboboxProps<T>) => {
+export const Combobox = <T extends string, S extends any>(
+    props: ComboboxProps<T, S>,
+) => {
     const {
         className,
         value,
@@ -31,7 +38,7 @@ export const Combobox = <T extends string>(props: ComboboxProps<T>) => {
         addonRight,
     } = props;
 
-    const onChangeHandler = (value: T) => {
+    const onChangeHandler = (value: S) => {
         onChange?.(value);
     };
 
@@ -43,7 +50,9 @@ export const Combobox = <T extends string>(props: ComboboxProps<T>) => {
         inputValue === ''
             ? values
             : values?.filter((item) => {
-                  return item.toLowerCase().includes(inputValue.toLowerCase());
+                  return item.value
+                      .toLowerCase()
+                      .includes(inputValue.toLowerCase());
               });
 
     return (
@@ -94,7 +103,7 @@ export const Combobox = <T extends string>(props: ComboboxProps<T>) => {
                     <ComboboxComponent.Options className={styles.list}>
                         {filteredValues.map((value) => (
                             <ComboboxComponent.Option
-                                key={value}
+                                key={value.id}
                                 value={value}
                                 className={styles.optionWrapper}
                                 as="div"
@@ -117,7 +126,7 @@ export const Combobox = <T extends string>(props: ComboboxProps<T>) => {
                                                 size="s"
                                             />
                                         )}
-                                        {value}
+                                        {value.value}
                                     </li>
                                 )}
                             </ComboboxComponent.Option>

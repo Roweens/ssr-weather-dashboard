@@ -21,8 +21,10 @@
         "@headlessui/react": "^1.7.16",
         "@tanstack/react-query": "^4.32.6",
         "axios": "^1.4.0",
+        "chart.js": "^4.3.3",
         "next": "13.4.12",
         "react": "18.2.0",
+        "react-chartjs-2": "^5.2.0",
         "react-dom": "18.2.0"
     },
     "devDependencies": {

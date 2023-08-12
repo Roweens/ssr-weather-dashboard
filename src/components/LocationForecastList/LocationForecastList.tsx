@@ -1,36 +1,47 @@
-import { memo } from 'react';
+/* eslint-disable react/display-name */
+import { memo, useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import cls from './LocationForecastList.module.scss';
-import { HStack, VStack } from '../ui/Stack';
+import { HStack } from '../ui/Stack';
+import { DayForecast } from '@/types/Forecast';
 import { LocationForecastItem } from '../LocationForecastItem/LocationForecastItem';
 import { Text } from '../ui/Text/Text';
-import { ForecastType } from '@/types/Forecast';
+import { Skeleton } from '../ui/Skeleton/Skeleton';
 
 interface LocationForecastListProps {
     className?: string;
-    weatherArray?: ForecastType;
+    weatherArray?: DayForecast[];
+    error?: unknown;
 }
 
 export const LocationForecastList = memo((props: LocationForecastListProps) => {
-    const { className, weatherArray } = props;
+    const { className, weatherArray, error } = props;
 
-    console.log(weatherArray);
+    const [selectedItemId, setSelectedItemId] = useState(
+        weatherArray?.[0].dt_txt,
+    );
+
+    const onCardClickHandle = useCallback((id: string) => {
+        setSelectedItemId(id);
+    }, []);
+
+    if (error) {
+        return <Text title={'Something went wrong'} bold />;
+    }
 
     return (
-        <VStack gap="32" wrap="wrap">
-            <Text title="Next 7 days" bold size="xl" />
-            <Text title={weatherArray?.city.name} bold size="xl" />
-            <HStack
-                className={classNames(cls.locationForecastList, {}, [
-                    className,
-                ])}
-                gap="32"
-            >
-                {/* Change key !!!! */}
-                {new Array(7).fill(0).map((forecast, i, array) => (
-                    <LocationForecastItem forecast={forecast} key={i} />
-                ))}
-            </HStack>
-        </VStack>
+        <HStack
+            className={classNames(cls.locationForecastList, {}, [className])}
+            gap="32"
+        >
+            {weatherArray?.map((forecast) => (
+                <LocationForecastItem
+                    forecast={forecast}
+                    key={forecast.dt}
+                    fullview={selectedItemId === forecast.dt_txt}
+                    onClick={onCardClickHandle}
+                />
+            ))}
+        </HStack>
     );
 });

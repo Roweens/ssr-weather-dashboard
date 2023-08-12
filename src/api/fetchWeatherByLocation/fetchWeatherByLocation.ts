@@ -1,18 +1,25 @@
-import { ForecastType } from '@/types/Forecast';
+import { ForecastType, TemperatureFormat } from '@/types/Forecast';
 import { $api } from '../api';
 
-export async function fetchForecastByLocation(
-    location?: GeolocationPosition | null,
-) {
-    if (!location) {
+interface FetchForecastByLocation {
+    lat?: number;
+    lon?: number;
+    units?: TemperatureFormat;
+}
+
+export async function fetchForecastByLocation(params: FetchForecastByLocation) {
+    const { lat, lon, units = 'metric' } = params;
+
+    if (!lat || !lon) {
         throw new Error();
     }
 
     try {
         const response = await $api.get<ForecastType>('/data/2.5/forecast', {
             params: {
-                lat: location.coords.latitude,
-                lon: location.coords.longitude,
+                lat,
+                lon,
+                units,
                 appid: process.env.NEXT_PUBLIC_API_KEY,
             },
         });

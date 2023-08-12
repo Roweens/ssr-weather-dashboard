@@ -1,31 +1,43 @@
 'use client';
 
-import { ReactNode, useEffect, useMemo, useState } from 'react';
-import { LocationContext } from './LocationContext';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
+import {
+    Location,
+    LocationContext,
+    LocationContextProps,
+} from './LocationContext';
 import { useGeolocation } from '@/lib/hooks/useGeolocation/useGeolocation';
+import { defaultLocation } from '@/lib/const/defaultLocation';
 
 interface LocationProviderProps {
     children: ReactNode;
 }
 
 export const LocationProvider = ({ children }: LocationProviderProps) => {
-    const [location, setLocation] = useState<GeolocationPosition | null>(null);
+    const [location, setLocation] = useState<Location | null>(null);
+
+    const successCallback = useCallback((position: GeolocationPosition) => {
+        setLocation({
+            latitude: position?.coords.latitude,
+            longitude: position?.coords.longitude,
+        });
+    }, []);
 
     const [geolocation, error] = useGeolocation({
-        successCallback: setLocation,
+        successCallback,
     });
 
     const defaultProps = useMemo(
         () => ({
-            location,
-            error: '',
+            location: location ? location : defaultLocation,
+            error,
             setLocation,
         }),
-        [location],
+        [error, location],
     );
 
     return (
-        <LocationContext.Provider value={defaultProps}>
+        <LocationContext.Provider value={defaultProps as LocationContextProps}>
             {children}
         </LocationContext.Provider>
     );

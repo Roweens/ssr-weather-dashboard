@@ -20,10 +20,11 @@ export const Header = (props: HeaderProps) => {
     const { location, error } = useContext(LocationContext);
 
     useEffect(() => {
+        console.log(location);
         if (location || error) {
             setLocationText(
                 (location
-                    ? `${location.coords.latitude}, ${location.coords.longitude}`
+                    ? `${location.latitude}, ${location.longitude}`
                     : error) as string,
             );
         }

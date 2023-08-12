@@ -1,5 +1,5 @@
 .card {
-    @apply rounded-2xl w-fit;
+    @apply rounded-2xl w-fit transition-all; 
 }
 
 .dark {

@@ -3,9 +3,9 @@
 }
 
 .header {
-    @apply h-fit w-full;
+    @apply h-[var(--header-h)] w-full;
 }
 
 .content {
-    @apply w-full p-6 pt-8;
+    @apply w-full p-6 pt-8 h-[calc(100vh-var(--header-h))];
 }
