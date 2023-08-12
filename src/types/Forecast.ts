@@ -61,3 +61,27 @@ export interface ForecastType {
     message: number;
     list: DayForecast[];
 }
+
+interface CityInfo {
+    country: string;
+    timezone: number;
+    sunrise: number;
+    sunset: number;
+}
+
+export interface CityForecastResponse {
+    cnt: number;
+    list: CityForecast[];
+}
+export interface CityForecast {
+    coord: Coordinates;
+    sys: CityInfo;
+    weather: DayForecastWeather[];
+    main: DayForecastMain;
+    visibility: number;
+    wind: DayForecastWind;
+    clouds: { all: number };
+    dt: number;
+    id: number;
+    name: string;
+}

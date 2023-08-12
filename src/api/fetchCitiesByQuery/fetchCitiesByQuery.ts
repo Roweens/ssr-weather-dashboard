@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { $api } from '../api';
 import { City } from '@/types/Cities';
 
@@ -14,13 +15,19 @@ export async function fetchCitiesByQuery(params: FetchCitiesByQueryParams) {
             params: {
                 q: cityName,
                 limit,
-                appid: process.env.NEXT_PUBLIC_API_KEY,
             },
         });
 
         if (!response.data) throw new Error();
         return response.data;
-    } catch (error) {
-        console.log(error);
+    } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+            console.log('error message: ', error.message);
+
+            return error.message;
+        } else {
+            console.log('unexpected error: ', error);
+            return 'An unexpected error occurred';
+        }
     }
 }
