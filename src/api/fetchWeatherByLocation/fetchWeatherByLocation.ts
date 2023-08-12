@@ -1,13 +1,16 @@
 import { ForecastType, TemperatureFormat } from '@/types/Forecast';
 import { $api } from '../api';
+import axios from 'axios';
 
-interface FetchForecastByLocation {
+interface FetchForecastByLocationParams {
     lat?: number;
     lon?: number;
     units?: TemperatureFormat;
 }
 
-export async function fetchForecastByLocation(params: FetchForecastByLocation) {
+export async function fetchForecastByLocation(
+    params: FetchForecastByLocationParams,
+) {
     const { lat, lon, units = 'metric' } = params;
 
     if (!lat || !lon) {
@@ -26,7 +29,11 @@ export async function fetchForecastByLocation(params: FetchForecastByLocation) {
 
         if (!response.data) throw new Error();
         return response.data;
-    } catch (error) {
-        console.log(error);
+    } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+            console.log('error message: ', error.message);
+        } else {
+            console.log('unexpected error: ', error);
+        }
     }
 }

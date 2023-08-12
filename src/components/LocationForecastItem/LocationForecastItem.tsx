@@ -9,6 +9,7 @@ import { Card } from '../ui/Card/Card';
 import Image from 'next/image';
 import { getLongDay } from '@/lib/utils/getLongDay';
 import { getFormattedTemperature } from '@/lib/utils/getFormattedTemperature';
+import { getFullHour } from '@/lib/utils/getFullHour';
 
 interface LocationForecastItemProps {
     className?: string;
@@ -45,10 +46,7 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
         [forecast.main.temp, format],
     );
 
-    const time = useMemo(
-        () => `${new Date(forecast.dt_txt).getHours()}:00`,
-        [forecast.dt_txt],
-    );
+    const time = useMemo(() => getFullHour(forecast.dt_txt), [forecast.dt_txt]);
 
     const day = useMemo(
         () => getLongDay({ date: forecast.dt_txt }),

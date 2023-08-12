@@ -2,7 +2,7 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import cls from './LocationForecastList.module.scss';
-import { HStack } from '../ui/Stack';
+import { HStack, VStack } from '../ui/Stack';
 import { DayForecast } from '@/types/Forecast';
 import { LocationForecastItem } from '../LocationForecastItem/LocationForecastItem';
 import { Text } from '../ui/Text/Text';

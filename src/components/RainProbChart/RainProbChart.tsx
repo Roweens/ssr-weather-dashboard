@@ -10,11 +10,10 @@ import { fetchForecastByLocation } from '@/api/fetchWeatherByLocation/fetchWeath
 import { LocationContext } from '@/lib/context/LocationContext/LocationContext';
 import { Chart, ChartDataType } from '../ui/Chart/Chart';
 import { ChartOptions } from 'chart.js';
-import { Loader } from '../ui/Loader/Loader';
-import { getLongDay } from '@/lib/utils/getLongDay';
 import { Text } from '../ui/Text/Text';
 import { VStack } from '../ui/Stack';
 import { Skeleton } from '../ui/Skeleton/Skeleton';
+import { getDayAndFullHour } from '@/lib/utils/getDayAndFullHour';
 
 interface RainProbChartProps {
     className?: string;
@@ -48,17 +47,7 @@ export const RainProbChart = memo((props: RainProbChartProps) => {
     const data: ChartDataType<number> = {
         labels: weatherData?.list
             .filter((forecast) => forecast.rain)
-            .map((forecast) => {
-                let day = getLongDay({ date: forecast.dt_txt });
-                let hours = new Date(forecast.dt_txt).getHours();
-                let minutes: string | number = new Date(
-                    forecast.dt_txt,
-                ).getMinutes();
-                if (String(minutes).length === 1) {
-                    minutes = `${String(minutes)}0`;
-                }
-                return `${day}, ${hours}:${minutes}`;
-            }),
+            .map((forecast) => getDayAndFullHour(forecast.dt_txt)),
         data: weatherData?.list
             .filter((forecast) => forecast.rain)
             .map((forecast) => forecast?.rain?.['3h']),
