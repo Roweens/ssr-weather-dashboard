@@ -12,6 +12,7 @@ import { Text } from '../ui/Text/Text';
 import { Skeleton } from '../ui/Skeleton/Skeleton';
 import { fetchNearbyCitiesByLocation } from '@/api/fetchNearbyCitiesByLocation/fetchNearbyCitiesByLocation';
 import { LocationContext } from '@/lib/context/LocationContext/LocationContext';
+import { useTranslations } from 'next-intl';
 
 interface NearbyCitiesContainerProps {
     className?: string;
@@ -21,16 +22,18 @@ export const NearbyCitiesContainer = memo(
     (props: NearbyCitiesContainerProps) => {
         const { className } = props;
 
-        const { location } = useContext(LocationContext);
+        const { location, format } = useContext(LocationContext);
+        const t = useTranslations('NearbyCities');
 
         const {
             data: nearbyCitiesWeatherData,
             isLoading,
             error,
-        } = useQuery(NEARBY_CITIES_QUERY_KEY.concat([location]), () =>
+        } = useQuery(NEARBY_CITIES_QUERY_KEY.concat([location, format]), () =>
             fetchNearbyCitiesByLocation({
                 lat: location.latitude,
                 lon: location.longitude,
+                units: format,
             }),
         );
 
@@ -44,7 +47,7 @@ export const NearbyCitiesContainer = memo(
 
         return (
             <VStack gap="16" className={'mx-8'} max>
-                <Text title="Cities around your location" size="xl" bold />
+                <Text title={t('title')} size="xl" bold />
 
                 {isLoading ? (
                     <VStack className={classNames('', {}, [])} gap="16">

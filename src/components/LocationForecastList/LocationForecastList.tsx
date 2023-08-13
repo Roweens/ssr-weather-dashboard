@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import cls from './LocationForecastList.module.scss';
 import { HStack, VStack } from '../ui/Stack';
 import { DayForecast } from '@/types/Forecast';
 import { LocationForecastItem } from '../LocationForecastItem/LocationForecastItem';
 import { Text } from '../ui/Text/Text';
-import { Skeleton } from '../ui/Skeleton/Skeleton';
+import { useTranslations } from 'next-intl';
 
 interface LocationForecastListProps {
     className?: string;
@@ -21,12 +21,14 @@ export const LocationForecastList = memo((props: LocationForecastListProps) => {
         weatherArray?.[0].dt_txt,
     );
 
+    const t = useTranslations('ForecastList');
+
     const onCardClickHandle = useCallback((id: string) => {
         setSelectedItemId(id);
     }, []);
 
     if (error) {
-        return <Text title={'Something went wrong'} bold />;
+        return <Text title={t('error')} bold />;
     }
 
     return (

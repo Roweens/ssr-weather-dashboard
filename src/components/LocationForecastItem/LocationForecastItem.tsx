@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { getLongDay } from '@/lib/utils/getLongDay';
 import { getFormattedTemperature } from '@/lib/utils/getFormattedTemperature';
 import { getFullHour } from '@/lib/utils/getFullHour';
+import { useTranslations } from 'next-intl';
 
 interface LocationForecastItemProps {
     className?: string;
@@ -27,6 +28,8 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
         format = 'metric',
         onClick,
     } = props;
+
+    const t = useTranslations('WeatherCard');
 
     const formattedFeelsLike = useMemo(
         () =>
@@ -53,9 +56,10 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
         [forecast.dt_txt],
     );
 
-    const onClickHandle = useCallback(() => {
-        onClick?.(forecast.dt_txt);
-    }, [forecast.dt_txt, onClick]);
+    const onClickHandle = useCallback(
+        () => onClick?.(forecast.dt_txt),
+        [forecast.dt_txt, onClick],
+    );
 
     if (fullview === false) {
         return (
@@ -67,7 +71,7 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
                     gap="32"
                     align="center"
                 >
-                    <Text title={day} className={styles.day} size="l" />
+                    <Text title={t(day)} className={styles.day} size="l" />
                     <Image
                         src={`https://openweathermap.org/img/wn/${forecast?.weather[0].icon}@2x.png`}
                         alt="weather icon"
@@ -94,7 +98,7 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
                     gap="32"
                     className={styles.cardHeader}
                 >
-                    <Text title={day} variant="inverted" bold size="l" />
+                    <Text title={t(day)} variant="inverted" bold size="l" />
                     <Text title={time} variant="inverted" bold size="l" />
                 </HStack>
                 <VStack max className={styles.cardBody} gap="16">
@@ -115,29 +119,39 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
                     <HStack max justify="between" align="end">
                         <VStack>
                             <Text
-                                title={`Real Feel: ${formattedFeelsLike}`}
+                                title={t('realFeel', {
+                                    temperature: formattedFeelsLike,
+                                })}
                                 size="m"
                                 variant="inverted"
                             />
                             <Text
-                                title={`Pressure: ${forecast.main.pressure}MB`}
+                                title={t('pressure', {
+                                    pressure: forecast.main.pressure,
+                                })}
                                 size="m"
                                 variant="inverted"
                             />
                             <Text
-                                title={`Humidity: ${forecast.main.humidity}%`}
+                                title={t('humidity', {
+                                    humidity: forecast.main.humidity,
+                                })}
                                 size="m"
                                 variant="inverted"
                             />
                         </VStack>
                         <VStack align="end">
                             <Text
-                                title={`Clouds: ${forecast.clouds.all}`}
+                                title={t('clouds', {
+                                    clouds: forecast.clouds.all,
+                                })}
                                 size="m"
                                 variant="inverted"
                             />
                             <Text
-                                title={`Wind Speed: ${forecast.wind.speed} km/h `}
+                                title={t('windSpeed', {
+                                    speed: forecast.wind.speed,
+                                })}
                                 size="m"
                                 variant="inverted"
                             />
@@ -148,22 +162,3 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
         </Card>
     );
 });
-
-// <HStack max justify="between" align="start" className={styles.cardBody}>
-//     <VStack gap="8">
-//         <Text title="10C" size="xxl" bold variant="inverted" />
-//         <VStack>
-//             <Text title="info" size="m" variant="inverted" />
-//             <Text title="info" size="m" variant="inverted" />
-//             <Text title="info" size="m" variant="inverted" />
-//             <Text title="info" size="m" variant="inverted" />
-//         </VStack>
-//     </VStack>
-//     <VStack fullHeight gap="8">
-//         <Icon Svg={TestIcon} />
-//         <VStack>
-//             <Text title="info" size="m" variant="inverted" />
-//             <Text title="info" size="m" variant="inverted" />
-//         </VStack>
-//     </VStack>
-// </HStack>

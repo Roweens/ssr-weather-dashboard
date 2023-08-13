@@ -9,6 +9,7 @@ import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import { CountrySearch } from '../CountrySearch/CountrySearch';
 import { useContext, useEffect, useState } from 'react';
 import { LocationContext } from '@/lib/context/LocationContext/LocationContext';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 interface HeaderProps {
     className?: string;
@@ -20,7 +21,6 @@ export const Header = (props: HeaderProps) => {
     const { location, error } = useContext(LocationContext);
 
     useEffect(() => {
-        console.log(location);
         if (location || error) {
             setLocationText(
                 (location
@@ -32,18 +32,16 @@ export const Header = (props: HeaderProps) => {
 
     return (
         <header className={styles.header}>
-            <Icon
-                Svg={TwitterIcon}
-                size="s"
-                interactive
-                buttonClassName={styles.icon}
-            />
+            <Icon Svg={TwitterIcon} size="s" buttonClassName={styles.icon} />
             <HStack gap="8">
-                <Icon Svg={LocationIcon} size="s" interactive />
+                <Icon Svg={LocationIcon} size="s" />
                 <Text text={locationText} bold />
             </HStack>
             <CountrySearch className={styles.search} />
-            <ThemeSwitcher className={styles.themeSwitcher} />
+            <HStack className={styles.switchers} gap="32">
+                <LanguageSwitcher />
+                <ThemeSwitcher />
+            </HStack>
         </header>
     );
 };

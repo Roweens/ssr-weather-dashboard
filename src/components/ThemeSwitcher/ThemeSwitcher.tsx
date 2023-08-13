@@ -1,8 +1,6 @@
 'use client';
 
 import { memo, useCallback } from 'react';
-import classNames from 'classnames';
-import cls from './ThemeSwitcher.module.scss';
 import SunIcon from '@/../public/sun.svg';
 import MoonIcon from '@/../public/moon.svg';
 import { Icon } from '../ui/Icon/Icon';

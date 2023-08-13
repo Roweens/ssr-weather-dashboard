@@ -14,7 +14,7 @@ interface TabsProps<T extends string> {
     tabs: TabItem<T>[];
     value: T;
     direction?: FlexDirection;
-    onTabClick: (tab: TabItem<T>) => void;
+    onTabClick?: (tab: TabItem<T>) => void;
 }
 
 export const Tabs = <T extends string>(props: TabsProps<T>) => {
@@ -22,7 +22,7 @@ export const Tabs = <T extends string>(props: TabsProps<T>) => {
 
     const clickHandle = useCallback(
         (tab: TabItem<T>) => () => {
-            onTabClick(tab);
+            onTabClick?.(tab);
         },
         [onTabClick],
     );

@@ -8,6 +8,7 @@ import {
 } from './LocationContext';
 import { useGeolocation } from '@/lib/hooks/useGeolocation/useGeolocation';
 import { defaultLocation } from '@/lib/const/defaultLocation';
+import { TemperatureFormat } from '@/types/Forecast';
 
 interface LocationProviderProps {
     children: ReactNode;
@@ -15,6 +16,7 @@ interface LocationProviderProps {
 
 export const LocationProvider = ({ children }: LocationProviderProps) => {
     const [location, setLocation] = useState<Location | null>(null);
+    const [format, setFormat] = useState<TemperatureFormat>('metric');
 
     const successCallback = useCallback((position: GeolocationPosition) => {
         setLocation({
@@ -30,10 +32,12 @@ export const LocationProvider = ({ children }: LocationProviderProps) => {
     const defaultProps = useMemo(
         () => ({
             location: location ? location : defaultLocation,
+            format,
             error,
             setLocation,
+            setFormat,
         }),
-        [error, location],
+        [error, format, location],
     );
 
     return (

@@ -6,14 +6,12 @@ import classNames from 'classnames';
 import SearchIcon from '@/../public/search.svg';
 import { Combobox, ValueItem } from '../ui/Combobox/Combobox';
 import { Icon } from '../ui/Icon/Icon';
-import {
-    Location,
-    LocationContext,
-} from '@/lib/context/LocationContext/LocationContext';
+import { LocationContext } from '@/lib/context/LocationContext/LocationContext';
 import useLazyQuery from '@/lib/hooks/useLazyQuery/useLazyQuery';
 import { CITY_SEARCH_QUERY_KEY } from '@/lib/const/queryKeys';
 import { fetchCitiesByQuery } from '@/api/fetchCitiesByQuery/fetchCitiesByQuery';
 import { City } from '@/types/Cities';
+import { useTranslations } from 'next-intl';
 
 interface CountrySearchProps {
     className?: string;
@@ -23,6 +21,7 @@ export const CountrySearch = memo((props: CountrySearchProps) => {
     const { className } = props;
 
     const [cityName, setCityName] = useState<string>('');
+    const t = useTranslations('Header');
 
     const [trigger, { data: citiesArray = [] }] = useLazyQuery<
         City[] | undefined,
@@ -34,8 +33,8 @@ export const CountrySearch = memo((props: CountrySearchProps) => {
     );
 
     const citiesNames = useMemo<ValueItem<string>[]>(() => {
-        return citiesArray.map(({ name, lat }) => {
-            return { id: lat, value: name };
+        return citiesArray.map(({ name, lat, country }) => {
+            return { id: lat, value: `${name}, ${country}` };
         });
     }, [citiesArray]);
 
@@ -43,8 +42,9 @@ export const CountrySearch = memo((props: CountrySearchProps) => {
 
     const onChange = useCallback(
         (value: ValueItem<string>) => {
+            const cityName = value.value.split(',')[0];
             const currentCity = citiesArray.find(
-                (city) => city.name === value.value && city.lat === value.id,
+                (city) => city.name === cityName && city.lat === value.id,
             );
 
             setLocation?.({
@@ -73,7 +73,7 @@ export const CountrySearch = memo((props: CountrySearchProps) => {
             values={citiesNames}
             inputValue={cityName}
             value={location}
-            placeholder="Search city..."
+            placeholder={t('search')}
         />
     );
 });

@@ -1,0 +1,35 @@
+{
+  "WeatherCard": {
+    "realFeel": "Real Feel: {temperature}",
+    "pressure": "Pressure: {pressure}",
+    "humidity": "Humidity: {humidity}",
+    "clouds": "Clouds: {clouds}",
+    "windSpeed": "Wind Speed: {speed} km/h",
+    "Monday": "Monday",
+    "Tuesday": "Tuesday",
+    "Wednesday": "Wednesday",
+    "Thursday": "Thursday",
+    "Friday": "Friday",
+    "Saturday ": "Saturday",
+    "Sunday": "Sunday"
+  },
+  "ForecastList":{
+    "error": "Something went wrong",
+    "title": "Next 5 days:",
+        "celcius": "Celcius",
+    "fahrenheit": "Fahrenheit"
+  },
+  "CityForecast":{
+    "title": "Other large cities"
+  },
+  "NearbyCities":{
+    "title": "Cities near you"
+  },
+  "Header":{
+    "search": "Search city..."
+  },
+  "Chart":{
+    "title": "Rain volume in millimeters",
+    "label": "Rain volume"
+  }
+}

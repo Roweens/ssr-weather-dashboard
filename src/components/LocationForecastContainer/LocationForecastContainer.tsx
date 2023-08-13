@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 'use client';
 
-import { memo, useCallback, useContext, useMemo, useState } from 'react';
+import { memo, useCallback, useContext, useMemo } from 'react';
 import classNames from 'classnames';
 import { LocationForecastList } from '../LocationForecastList/LocationForecastList';
 import { useQuery } from '@tanstack/react-query';
@@ -13,29 +13,32 @@ import { Text } from '../ui/Text/Text';
 import { Skeleton } from '../ui/Skeleton/Skeleton';
 import { TemperatureFormat } from '@/types/Forecast';
 import { TabItem, Tabs } from '../ui/Tabs/Tabs';
+import { useTranslations } from 'next-intl';
 
 interface LocationForecastContainerProps {
     className?: string;
 }
 
-const formatOptions: TabItem<TemperatureFormat>[] = [
-    {
-        content: <Text text="Celcius" />,
-        value: 'metric',
-    },
-    {
-        content: <Text text="Fahrenheit" />,
-        value: 'standard',
-    },
-];
-
 export const LocationForecastContainer = memo(
     (props: LocationForecastContainerProps) => {
         const { className } = props;
 
-        const [format, setFormat] = useState<TemperatureFormat>('metric');
+        const { location, format, setFormat } = useContext(LocationContext);
+        const t = useTranslations('ForecastList');
 
-        const { location } = useContext(LocationContext);
+        const formatOptions = useMemo<TabItem<TemperatureFormat>[]>(
+            () => [
+                {
+                    content: <Text text={t('celcius')} />,
+                    value: 'metric',
+                },
+                {
+                    content: <Text text={t('fahrenheit')} />,
+                    value: 'standard',
+                },
+            ],
+            [t],
+        );
 
         const {
             data: weatherData,
@@ -51,9 +54,9 @@ export const LocationForecastContainer = memo(
 
         const onFormatHandle = useCallback(
             (tab: TabItem<TemperatureFormat>) => {
-                setFormat(tab.value);
+                setFormat?.(tab.value);
             },
-            [],
+            [setFormat],
         );
 
         const weekForecastList = useMemo(
@@ -68,7 +71,7 @@ export const LocationForecastContainer = memo(
             <VStack gap="16">
                 <HStack gap="32" justify="between">
                     <HStack gap="16">
-                        <Text title="Next 5 days:" size="xl" />
+                        <Text title={t('title')} size="xl" />
                         <Text title={weatherData?.city.name} bold size="xl" />
                     </HStack>
                     <Tabs

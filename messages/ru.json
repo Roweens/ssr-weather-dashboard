@@ -1,0 +1,35 @@
+{
+  "WeatherCard": {
+    "realFeel": "Ощущается как: {temperature}",
+    "pressure": "Давление: {pressure}",
+    "humidity": "Влажность: {humidity}",
+    "clouds": "Облачность: {clouds}",
+    "windSpeed": "Скорость ветра: {speed} км/ч",
+    "Monday": "Понедельник",
+    "Tuesday": "Вторник",
+    "Wednesday": "Среда",
+    "Thursday": "Четверг",
+    "Friday": "Пятница",
+    "Saturday ": "Суббота",
+    "Sunday": "Воскресенье"
+  },
+  "ForecastList":{
+    "error": "Что-то пошло не так",
+    "title": "Следующие 5 дней:",
+    "celcius": "Цельсии",
+    "fahrenheit": "Фаренгейты"
+  },
+  "CityForecast":{
+    "title": "Другие крупные города"
+  },
+  "NearbyCities":{
+    "title": "Города поблизости"
+  },
+  "Header":{
+    "search": "Найти город..."
+  },
+  "Chart":{
+    "title": "Объем осадков в миллиметрах",
+    "label": "Объем осадков"
+  }
+}

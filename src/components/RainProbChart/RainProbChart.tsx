@@ -14,6 +14,7 @@ import { Text } from '../ui/Text/Text';
 import { VStack } from '../ui/Stack';
 import { Skeleton } from '../ui/Skeleton/Skeleton';
 import { getDayAndFullHour } from '@/lib/utils/getDayAndFullHour';
+import { useTranslations } from 'next-intl';
 
 interface RainProbChartProps {
     className?: string;
@@ -32,6 +33,7 @@ export const RainProbChart = memo((props: RainProbChartProps) => {
     const { className } = props;
 
     const { location } = useContext(LocationContext);
+    const t = useTranslations('Chart');
 
     const {
         data: weatherData,
@@ -51,12 +53,12 @@ export const RainProbChart = memo((props: RainProbChartProps) => {
         data: weatherData?.list
             .filter((forecast) => forecast.rain)
             .map((forecast) => forecast?.rain?.['3h']),
-        dataLabel: 'Rain volume',
+        dataLabel: t('label'),
     };
 
     return (
         <VStack fullHeight max gap="24">
-            <Text title="Rain volume in millimeters" bold size="xl" />
+            <Text title={t('title')} bold size="xl" />
             <div className={classNames(cls.rainProbChart, {}, [className])}>
                 {isLoading ? (
                     <Skeleton width="100%" height="100%" />

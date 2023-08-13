@@ -1,4 +1,4 @@
-import '../styles/globals.scss';
+import '@/styles/globals.scss';
 import type { Metadata } from 'next';
 import { Inter, Roboto_Flex } from 'next/font/google';
 import { MainLayout } from '@/components/layouts/MainLayout/MainLayout';
@@ -6,6 +6,10 @@ import { Header } from '@/components/Header/Header';
 import { LocationProvider } from '@/lib/context/LocationContext/LocationProvider';
 import { ThemeProvider } from '@/lib/context/ThemeContext/ThemeProvider';
 import QueryProvider from '@/lib/providers/QueryProvider';
+import { useLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
+import { ReactNode } from 'react';
+import { NextIntlClientProvider } from 'next-intl';
 
 const inter = Inter({ subsets: ['latin'] });
 const robotoFlex = Roboto_Flex({
@@ -38,23 +42,44 @@ export const metadata: Metadata = {
     publisher: 'Vercel',
 };
 
-export default function RootLayout({
+interface RootLayoutProps {
+    children: ReactNode;
+    params: {
+        locale: string;
+    };
+}
+
+export default async function RootLayout({
     children,
-}: {
-    children: React.ReactNode;
-}) {
+    params,
+}: RootLayoutProps) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+    let messages;
+    try {
+        messages = (await import(`../../../messages/${params.locale}.json`))
+            .default;
+    } catch (error) {
+        notFound();
+    }
+
     return (
-        <html lang="en">
+        <html lang={params.locale}>
             <body className={`${inter.className} ${robotoFlex.variable} app`}>
-                <QueryProvider>
-                    <ThemeProvider>
-                        <LocationProvider>
-                            <MainLayout header={<Header />}>
-                                {children}
-                            </MainLayout>
-                        </LocationProvider>
-                    </ThemeProvider>
-                </QueryProvider>
+                <NextIntlClientProvider
+                    locale={params.locale}
+                    messages={messages}
+                >
+                    <QueryProvider>
+                        <ThemeProvider>
+                            <LocationProvider>
+                                <MainLayout header={<Header />}>
+                                    {children}
+                                </MainLayout>
+                            </LocationProvider>
+                        </ThemeProvider>
+                    </QueryProvider>
+                </NextIntlClientProvider>
             </body>
         </html>
     );
