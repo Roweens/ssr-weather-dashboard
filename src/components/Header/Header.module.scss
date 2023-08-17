@@ -1,5 +1,5 @@
 .header {
-    @apply grid grid-cols-header px-6 py-4 items-center;
+    @apply grid grid-cols-headerMobile md:grid-cols-headerLaptop lg:grid-cols-header px-6 py-4 items-center;
 }
 
 .search,

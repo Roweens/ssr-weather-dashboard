@@ -46,7 +46,7 @@ export const NearbyCitiesContainer = memo(
         );
 
         return (
-            <VStack gap="16" className={'mx-8'} max>
+            <VStack gap="16" className={'lg:mx-8'} max>
                 <Text title={t('title')} size="xl" bold />
 
                 {isLoading ? (

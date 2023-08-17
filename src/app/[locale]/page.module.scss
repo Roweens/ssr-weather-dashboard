@@ -1,3 +1,7 @@
 .main {
-  @apply grid grid-cols-mainPage h-full overflow-hidden
+  @apply flex flex-col gap-5 lg:grid lg:grid-cols-mainPage h-full overflow-x-hidden
+}
+
+.listsWrapper{
+  @apply flex flex-col md:flex-row gap-4 lg:flex-col 
 }

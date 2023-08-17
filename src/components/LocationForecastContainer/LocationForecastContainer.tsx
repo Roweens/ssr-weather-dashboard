@@ -14,6 +14,8 @@ import { Skeleton } from '../ui/Skeleton/Skeleton';
 import { TemperatureFormat } from '@/types/Forecast';
 import { TabItem, Tabs } from '../ui/Tabs/Tabs';
 import { useTranslations } from 'next-intl';
+import { Mobile } from '@/styles/media';
+import { useMediaQuery } from 'react-responsive';
 
 interface LocationForecastContainerProps {
     className?: string;
@@ -67,9 +69,13 @@ export const LocationForecastContainer = memo(
             [weatherData?.list],
         );
 
+        const AdditionalInfoTag = useMediaQuery({ minWidth: 650 })
+            ? HStack
+            : VStack;
+
         return (
-            <VStack gap="16">
-                <HStack gap="32" justify="between">
+            <VStack gap="16" max>
+                <AdditionalInfoTag gap="32" justify="between">
                     <HStack gap="16">
                         <Text title={t('title')} size="xl" />
                         <Text title={weatherData?.city.name} bold size="xl" />
@@ -79,7 +85,7 @@ export const LocationForecastContainer = memo(
                         onTabClick={onFormatHandle}
                         value={format}
                     />
-                </HStack>
+                </AdditionalInfoTag>
 
                 {isLoading ? (
                     <HStack className={classNames('', {}, [])} gap="32">

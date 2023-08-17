@@ -6,10 +6,10 @@ import { Header } from '@/components/Header/Header';
 import { LocationProvider } from '@/lib/context/LocationContext/LocationProvider';
 import { ThemeProvider } from '@/lib/context/ThemeContext/ThemeProvider';
 import QueryProvider from '@/lib/providers/QueryProvider';
-import { useLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
+import { ClientProvider } from '@/lib/context/ClientContext/ClientProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 const robotoFlex = Roboto_Flex({
@@ -53,8 +53,6 @@ export default async function RootLayout({
     children,
     params,
 }: RootLayoutProps) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-
     let messages;
     try {
         messages = (await import(`../../../messages/${params.locale}.json`))
@@ -72,11 +70,13 @@ export default async function RootLayout({
                 >
                     <QueryProvider>
                         <ThemeProvider>
-                            <LocationProvider>
-                                <MainLayout header={<Header />}>
-                                    {children}
-                                </MainLayout>
-                            </LocationProvider>
+                            <ClientProvider>
+                                <LocationProvider>
+                                    <MainLayout header={<Header />}>
+                                        {children}
+                                    </MainLayout>
+                                </LocationProvider>
+                            </ClientProvider>
                         </ThemeProvider>
                     </QueryProvider>
                 </NextIntlClientProvider>

@@ -22,8 +22,10 @@ module.exports = {
                 stack32: '32px',
             },
             gridTemplateColumns: {
-                header: '100px minmax(100px, 300px) 1fr minmax(100px, 400px)',
-                mainPage: 'minmax(500px, 1fr) minmax(300px, 750px)',
+                header: '100px minmax(100px, 300px) minmax(250px, 1fr) minmax(100px, 400px)',
+                headerLaptop: '80px 1fr minmax(100px, 400px)',
+                headerMobile: '80px 1fr',
+                mainPage: 'minmax(400px, 3fr) minmax(400px, 1fr)',
             },
         },
     },

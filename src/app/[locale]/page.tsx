@@ -1,4 +1,5 @@
 import styles from './page.module.scss';
+
 import LocationForecastWrapper from '@/components/LocationForecastContainer/LocationForecastWrapper';
 import { VStack } from '@/components/ui/Stack';
 import RainProbChartWrapper from '@/components/RainProbChart/RainProbChartWrapper';
@@ -16,10 +17,10 @@ export default function HomePage(props: HomePagePageProps) {
                 <LocationForecastWrapper />
                 <RainProbChartWrapper />
             </VStack>
-            <VStack gap="32">
+            <div className={styles.listsWrapper}>
                 <CityForecastWrapper />
                 <NearbyCitiesWrapper />
-            </VStack>
+            </div>
         </main>
     );
 }

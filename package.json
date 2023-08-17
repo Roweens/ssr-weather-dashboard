@@ -19,7 +19,9 @@
     },
     "dependencies": {
         "@headlessui/react": "^1.7.16",
+        "@react-spring/web": "^9.7.3",
         "@tanstack/react-query": "^4.32.6",
+        "@use-gesture/react": "^10.2.27",
         "axios": "^1.4.0",
         "chart.js": "^4.3.3",
         "dayjs": "^1.11.9",
@@ -27,7 +29,8 @@
         "next-intl": "^3.0.0-beta.9",
         "react": "18.2.0",
         "react-chartjs-2": "^5.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "react-responsive": "^9.0.2"
     },
     "devDependencies": {
         "@svgr/webpack": "^8.0.1",
