@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 'use client';
 
 import { memo, useCallback, useContext, useMemo } from 'react';
@@ -14,14 +13,13 @@ import { Skeleton } from '../ui/Skeleton/Skeleton';
 import { TemperatureFormat } from '@/types/Forecast';
 import { TabItem, Tabs } from '../ui/Tabs/Tabs';
 import { useTranslations } from 'next-intl';
-import { Mobile } from '@/styles/media';
 import { useMediaQuery } from 'react-responsive';
 
 interface LocationForecastContainerProps {
     className?: string;
 }
 
-export const LocationForecastContainer = memo(
+const LocationForecastContainer = memo(
     (props: LocationForecastContainerProps) => {
         const { className } = props;
 
@@ -106,3 +104,6 @@ export const LocationForecastContainer = memo(
         );
     },
 );
+
+LocationForecastContainer.displayName = 'LocationForecastContainer';
+export default LocationForecastContainer;

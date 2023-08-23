@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { memo, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import styles from './LocationForecastItem.module.scss';
@@ -20,7 +19,7 @@ interface LocationForecastItemProps {
     onClick?: (id: string) => void;
 }
 
-export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
+const LocationForecastItem = memo((props: LocationForecastItemProps) => {
     const {
         className,
         forecast,
@@ -162,3 +161,6 @@ export const LocationForecastItem = memo((props: LocationForecastItemProps) => {
         </Card>
     );
 });
+
+LocationForecastItem.displayName = 'LocationForecastItem';
+export default LocationForecastItem;

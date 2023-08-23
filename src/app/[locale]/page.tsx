@@ -6,11 +6,7 @@ import RainProbChartWrapper from '@/components/RainProbChart/RainProbChartWrappe
 import CityForecastWrapper from '@/components/CityForecastContainer/CityForecastWrapper';
 import NearbyCitiesWrapper from '@/components/NearbyCitiesContainer/NearbyCitiesWrapper';
 
-interface HomePagePageProps {
-    className?: string;
-}
-
-export default function HomePage(props: HomePagePageProps) {
+export default function HomePage() {
     return (
         <main className={styles.main}>
             <VStack gap="32" fullHeight>

@@ -1,11 +1,10 @@
-/* eslint-disable react/display-name */
 import { memo } from 'react';
 import classNames from 'classnames';
 import cls from './CityForecastList.module.scss';
 import { VStack } from '../ui/Stack';
 import { CityForecast } from '@/types/Forecast';
 import { Text } from '../ui/Text/Text';
-import { CityForecastItem } from '../CityForecastItem/CityForecastItem';
+import CityForecastItem from '../CityForecastItem/CityForecastItem';
 
 interface CityForecastListProps {
     className?: string;
@@ -31,3 +30,6 @@ export const CityForecastList = memo((props: CityForecastListProps) => {
         </VStack>
     );
 });
+
+CityForecastList.displayName = 'CityForecastList';
+export default CityForecastList;

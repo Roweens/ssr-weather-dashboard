@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 'use client';
 
 import { memo, useContext } from 'react';
@@ -73,3 +72,6 @@ export const RainProbChart = memo((props: RainProbChartProps) => {
         </VStack>
     );
 });
+
+RainProbChart.displayName = 'RainProbChart';
+export default RainProbChart;

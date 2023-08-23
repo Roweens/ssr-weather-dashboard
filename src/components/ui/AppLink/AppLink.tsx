@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { memo, ReactNode } from 'react';
 import classNames from 'classnames';
 import cls from './AppLink.module.scss';
@@ -10,7 +9,7 @@ interface AppLinkProps extends LinkProps {
     activeClassname?: string;
 }
 
-export const AppLink = memo((props: AppLinkProps) => {
+const AppLink = memo((props: AppLinkProps) => {
     const {
         className,
         children,
@@ -29,3 +28,6 @@ export const AppLink = memo((props: AppLinkProps) => {
         </Link>
     );
 });
+
+AppLink.displayName = 'AppLink';
+export default AppLink;

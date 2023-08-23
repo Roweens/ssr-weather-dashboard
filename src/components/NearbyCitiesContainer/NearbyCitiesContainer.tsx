@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 'use client';
 
 import { memo, useContext, useMemo } from 'react';
@@ -72,3 +71,6 @@ export const NearbyCitiesContainer = memo(
         );
     },
 );
+
+NearbyCitiesContainer.displayName = 'NearbyCitiesContainer';
+export default NearbyCitiesContainer;

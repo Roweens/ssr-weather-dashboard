@@ -1,6 +1,4 @@
-/* eslint-disable react/display-name */
 import { memo, useMemo } from 'react';
-
 import classNames from 'classnames';
 import cls from './CityForecastItem.module.scss';
 import { CityForecast, TemperatureFormat } from '@/types/Forecast';
@@ -16,7 +14,7 @@ interface CityForecastItemProps {
     className?: string;
 }
 
-export const CityForecastItem = memo((props: CityForecastItemProps) => {
+const CityForecastItem = memo((props: CityForecastItemProps) => {
     const { className, forecast, format = 'metric' } = props;
 
     const formattedTemperature = useMemo(
@@ -64,3 +62,6 @@ export const CityForecastItem = memo((props: CityForecastItemProps) => {
         </Card>
     );
 });
+
+CityForecastItem.displayName = 'CityForecastItem';
+export default CityForecastItem;

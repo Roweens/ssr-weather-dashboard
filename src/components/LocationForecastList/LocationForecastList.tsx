@@ -1,10 +1,9 @@
-/* eslint-disable react/display-name */
 import { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import cls from './LocationForecastList.module.scss';
-import { HStack, VStack } from '../ui/Stack';
+import { HStack } from '../ui/Stack';
 import { DayForecast } from '@/types/Forecast';
-import { LocationForecastItem } from '../LocationForecastItem/LocationForecastItem';
+import LocationForecastItem from '../LocationForecastItem/LocationForecastItem';
 import { Text } from '../ui/Text/Text';
 import { useTranslations } from 'next-intl';
 
@@ -47,3 +46,6 @@ export const LocationForecastList = memo((props: LocationForecastListProps) => {
         </HStack>
     );
 });
+
+LocationForecastList.displayName = 'LocationForecastList';
+export default LocationForecastList;

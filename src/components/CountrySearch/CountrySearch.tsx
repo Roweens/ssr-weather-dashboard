@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 'use client';
 
 import { memo, useCallback, useContext, useState, useMemo } from 'react';
@@ -72,8 +71,12 @@ export const CountrySearch = memo((props: CountrySearchProps) => {
             onChange={onChange}
             values={citiesNames}
             inputValue={cityName}
+            //@ts-ignore
             value={location}
             placeholder={t('search')}
         />
     );
 });
+
+CountrySearch.displayName = 'CountrySearch';
+export default CountrySearch;

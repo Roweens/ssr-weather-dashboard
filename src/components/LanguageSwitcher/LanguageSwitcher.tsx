@@ -1,5 +1,3 @@
-/* eslint-disable react/display-name */
-
 import { memo } from 'react';
 import { TabItem, Tabs } from '../ui/Tabs/Tabs';
 import { usePathname, useRouter } from 'next-intl/client';
@@ -44,4 +42,5 @@ const LanguageSwitcher = memo((props: LanguageSwitcherProps) => {
     );
 });
 
+LanguageSwitcher.displayName = 'LanguageSwitcher';
 export default LanguageSwitcher;

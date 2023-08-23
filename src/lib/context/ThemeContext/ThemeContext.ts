@@ -1,6 +1,6 @@
 'use client';
 
-import { Theme } from '@/utils/const/theme';
+import { Theme } from '@/lib/const/theme';
 import { createContext } from 'react';
 
 export interface ThemeContextProps {

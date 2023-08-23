@@ -2,7 +2,7 @@ import { fetchForecastByLocation } from '@/api/fetchWeatherByLocation/fetchWeath
 import { WEEK_FORECAST_QUERY_KEY } from '@/lib/const/queryKeys';
 import { Hydrate } from '@/lib/utils/HydrateComponent';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
-import { LocationForecastContainer } from './LocationForecastContainer';
+import LocationForecastContainer from './LocationForecastContainer';
 import { defaultLocation } from '@/lib/const/defaultLocation';
 
 export default async function LocationForecastWrapper() {

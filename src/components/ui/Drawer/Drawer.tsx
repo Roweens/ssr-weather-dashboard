@@ -1,5 +1,4 @@
 'use client';
-/* eslint-disable react/display-name */
 
 import { memo, ReactNode, useCallback, useEffect } from 'react';
 import { useDrag } from '@use-gesture/react';
@@ -88,3 +87,6 @@ export const Drawer = memo((props: DrawerProps) => {
         </Portal>
     );
 });
+
+Drawer.displayName = 'Drawer';
+export default Drawer;
